@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { db } from "../database/banco-mongo"; // Corrigido nome e removida extensão .js
+import { db } from "../database/banco-mongo.js"; // Corrigido nome e adicionada extensão .js
 import { ObjectId } from "mongodb";
 
 // Tipagem para item do carrinho
@@ -101,7 +101,11 @@ class CarrinhoController {
                 return res.status(404).json({ erro: "Produto não está no carrinho." });
             }
 
-            carrinho.itens[index].quantidade = quantidade;
+            if (carrinho.itens[index]) {
+                carrinho.itens[index].quantidade = quantidade;
+            } else {
+                return res.status(404).json({ erro: "Produto não está no carrinho." });
+            }
 
             // Recalcular total
             carrinho.total = carrinho.itens.reduce((total, item) =>
