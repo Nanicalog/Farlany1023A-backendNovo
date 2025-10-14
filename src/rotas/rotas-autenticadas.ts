@@ -7,7 +7,7 @@ import carrinhoController from "../carrinho/carrinho.controller.js";
 const rotasAutenticadas = Router();
 
 //Criando rotasAutenticadas para os usuários
-rotasAutenticadas.post("/usuarios", usuarioController.adicionar);
+rotasAutenticadas.post("/login", usuarioController.adicionar);
 rotasAutenticadas.get("/usuarios", usuarioController.listar);
 
 
