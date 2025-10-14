@@ -8,10 +8,6 @@ const app = express();
 app.use(express.json());
 
 //Explicando o que é um middleware
-
-function Middleware(req: Request, res: Response, next: NextFunction) {
-    return res.status(401).json({ mensagem: "Você não tem permissão para acessar esse recurso!" })
-}
 app.use(rotasNaoAutenticadas)
 app.use(Middleware)
 app.use(rotasAutenticadas);
